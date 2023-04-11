@@ -74,6 +74,7 @@ sphinx:
         macros: 
            "prob": ["\\mathbb{P}\\left(#1\\right)",1]          
            "expected": ["\\mathbb{E}\\left[#1\\right]",1]
+           "variance": ["\\mathbb{V}\\mathrm{ar}\\left[#1\\right]",1]
            "floor": ["\\lfloor#1\\rfloor", 1]
            "bmat" : ["\\left[\\begin{array}"]
            "emat" : ["\\end{array}\\right]"]    
@@ -86,6 +87,7 @@ sphinx:
 
   extra_extensions: 
   - sphinx_togglebutton    
+  - sphinx.ext.imgconverter
 #  - sphinx_exercise  # modified local extension is used instead
 #  - sphinx_proof  # modified local extension is used instead
    
