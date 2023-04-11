@@ -1,0 +1,95 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: สถิติและความน่าจะเป็น
+author: เกษมสิทธิ์ ตียพันธ์
+copyright: "2023"
+#logo: logo.png
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: force
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: psbook.tex
+  latex_engine: xelatex  
+  use_jupyterbook_latex: true  
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+  
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/kasemsit/prob-stat-book  # Online location of your book
+  path_to_book: docs  # Optional path to your book, relative to the repository root
+  branch: master  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: true
+  use_repository_button: true
+  extra_navbar: Powered by <a href="https://jupyterbook.org">Jupyter Book</a>  # Will be displayed underneath the left navbar.
+  extra_footer: ""  # Will be displayed underneath the footer.  
+  
+   
+sphinx:  
+  recursive_update: true # A boolean indicating whether to overwrite the Sphinx config (true) or recursively update (false)
+  config:   
+    #language: th
+    html_theme: 'sphinx_book_theme'
+    html_show_copyright: false
+    html_extra_path: []
+    html_theme_options: # https://sphinx-book-theme.readthedocs.io/en/latest/customize/index.html
+      search_bar_text: 'ค้นหาคำในเล่ม...' # https://github.com/executablebooks/jupyter-book/issues/770
+      toc_title: 'สารบัญ'
+      show_toc_level: 2
+      use_sidenotes: true  # footnote as margin note
+      announcement: "⚠️เวอร์ชันทดสอบ⚠️"     
+    latex_engine: xelatex    
+    latex_additional_files: ['psbook_preamble.tex']
+    latex_elements: 
+      papersize: 'a4paper'
+      pointsize: '10pt'
+      fontpkg: >                       
+        \setmainfont[Script=Thai,Scale=0.85,BoldFont={Laksaman-Bold.otf},ItalicFont={Laksaman-Italic.otf},BoldItalicFont={Laksaman-BoldItalic.otf},]{Laksaman.otf} 
+
+        \setmonofont{Consolas} 
+
+        \setsansfont[Script=Thai,Scale=0.85,BoldFont={Laksaman-Bold.otf},ItalicFont={Laksaman-Italic.otf},BoldItalicFont={Laksaman-BoldItalic.otf},]{Laksaman.otf}
+      preamble: '\input{psbook_preamble.tex}
+      
+      \renewcommand\chaptertitlename{บทที่ }'  
+      fncychap: '\usepackage[Bjornstrup]{fncychap}'
+      sphinxsetup: 'bookmarksdepth=2'
+    numfig_format: {'section':'หัวข้อ %s','figure':'รูปที่ %s','table':'ตารางที่ %s','code-block':'Listing %s'}    
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    mathjax3_config:
+      tex: # https://jupyterbook.org/en/stable/advanced/sphinx.html
+        macros: 
+           "prob": ["\\mathbb{P}\\left(#1\\right)",1]          
+           "expected": ["\\mathbb{E}\\left[#1\\right]",1]
+           "floor": ["\\lfloor#1\\rfloor", 1]
+           "bmat" : ["\\left[\\begin{array}"]
+           "emat" : ["\\end{array}\\right]"]    
+      chtml: # https://docs.mathjax.org/en/v3.2-latest/options/output/index.html
+        mtextFont: 'Sarabun'  # text font in latex    
+
+  local_extensions:
+    sphinx_proof: ../sphinx-proof
+    sphinx_exercise: ../sphinx-exercise
+
+  extra_extensions: 
+  - sphinx_togglebutton    
+#  - sphinx_exercise  # modified local extension is used instead
+#  - sphinx_proof  # modified local extension is used instead
+   
+
+ 
+
+
