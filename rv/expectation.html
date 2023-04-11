@@ -52,7 +52,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"prob": ["\\mathbb{P}\\left(#1\\right)", 1], "expected": ["\\mathbb{E}\\left[#1\\right]", 1], "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "chtml": {"mtextFont": "Sarabun"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"macros": {"prob": ["\\mathbb{P}\\left(#1\\right)", 1], "expected": ["\\mathbb{E}\\left[#1\\right]", 1], "variance": ["\\mathbb{V}\\mathrm{ar}\\left[#1\\right]", 1], "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "chtml": {"mtextFont": "Sarabun"}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -352,7 +352,8 @@ title="Print to PDF"
 \expected{X} = \int_\Omega X(\omega) \, d \prob{\omega}
 \]</div>
 </section>
-</div><div class="proof definition admonition" id="def:expected_cont_abs">
+</div><p>TODO</p>
+<div class="proof definition admonition" id="def:expected_cont_abs">
 <p class="admonition-title"><span class="caption-number">นิยาม 1.2 </span> (ค่าคาดหมายของตัวแปรสุ่มต่อเนื่อง)</p>
 <section class="definition-content" id="proof-content">
 <p><a class="reference internal" href="../glossary.html#term-10"><span class="xref std std-term">ค่าคาดหมาย</span></a>ของตัวแปรสุ่ม <span class="math notranslate nohighlight">\(X\sim f_X(x)\)</span> มีนิยามคือ</p>
@@ -361,7 +362,64 @@ title="Print to PDF"
 \expected{X} = \int_{-\infty}^\infty x f_X(x) dx
 \]</div>
 </section>
-</div></section>
+</div><div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">ตัวอย่าง 1.1 </span> (<span class="math notranslate nohighlight">\(\expected{X}\)</span> และ <span class="math notranslate nohighlight">\(\variance{X}\)</span> ของ\gls{t:continuous_uniform_distribution}{label=ex:uniform_mean})</p>
+<section class="example-content" id="proof-content">
+<p>จงหา <span class="math notranslate nohighlight">\(\expected{X}\)</span> และ <span class="math notranslate nohighlight">\(\variance{X}\)</span> ของตัวแปรสุ่ม <span class="math notranslate nohighlight">\(X\)</span> ที่มี \glsuseri{t:pdf} ดังต่อไปนี้</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/uniform_pdf_ab.png"><img alt="../_images/uniform_pdf_ab.png" src="../_images/uniform_pdf_ab.png" style="height: 150px;" /></a>
+</figure>
+</section>
+</div><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+วิธีทำ<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ol>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(\expected{X}\)</span> คำนวณได้จากนิยามของ<span class="xref std std-term">ค่าคาดหวัง</span> ดังนี้</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+    \expected{X} &amp;= \int_{-\infty}^\infty x f_X(x) dx = \int_{a}^b x \frac{1}{b-a} dx = \frac{1}{b-a} \frac{x^2}{2} \bigg\rvert_{x=a}^b \\
+    &amp;= \frac{1}{2(b-a)} \left( b^2 - a^2 \right) = \frac{1}{2(b-a)} (a-b)(a+b) = \frac{a+b}{2}
+    \end{align*}
+    \end{split}\]</div>
+</li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(\variance{X}\)</span> คำนวณได้จากนิยามของ<span class="xref std std-term">ค่าความแปรปรวน</span> ดังนี้</p>
+<div class="math notranslate nohighlight">
+\[
+    \variance{X} = \expected{ (X - \mu)^2 } 
+    \]</div>
+<p class="sd-card-text">โดยที่ <span class="math notranslate nohighlight">\(\mu = \expected{X}\)</span> และจาก <span class="math notranslate nohighlight">\(\expected{X} = \frac{a+b}{2}\)</span> นอกจากนี้ การที่ทราบว่า <span class="math notranslate nohighlight">\(\variance{X} = \expected{ (X - \mu)^2 } = \expected{X^2} - \mu^2\)</span>
+จึงเหลือเพียงคำนวณ <span class="math notranslate nohighlight">\(\expected{X^2}\)</span> ดังนี้</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}  
+    \begin{align*}
+    \expected{X^2} &amp;= \int_{-\infty}^{\infty} x^2 f_X(x) \; dx \\
+    &amp;= \int_{a}^{b} x^2 \frac{1}{b-a} \; dx \\
+    &amp;=  \frac{x^3}{3(b-a)} \Big\rvert_{x=a}^b \\
+    &amp;= \frac{1}{3(b-a)} \left( b^3 - a^3 \right) \\
+    &amp;= \frac{(b-a)(a^2 + ab + b^2)}{3(b-a)} \\
+    &amp;= \frac{1}{3}(a^2+ab+b^2) 
+    \end{align*}
+    \end{split}\]</div>
+<p class="sd-card-text">การที่ <span class="math notranslate nohighlight">\(\mu^2 = \frac{(a+b)^2}{4}\)</span> จึงได้ว่า</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+    \variance{X} &amp;= \expected{X^2} - \mu^2  \\
+    &amp;= \frac{1}{3}(a^2+ab+b^2) -\frac{1}{4}(a+b)^2 \\
+    &amp;= \frac{1}{12} (4a^2 + 4ab + 4b^2 - 3a^2 -6ab - 3 b^2) \\
+    &amp;= \frac{1}{12} (a^2 -2ab + b^2) \\
+    &amp;= \frac{1}{12}(b-a)^2 
+    \end{align*}
+    \end{split}\]</div>
+</li>
+</ol>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
