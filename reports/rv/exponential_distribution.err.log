@@ -1,0 +1,80 @@
+Traceback (most recent call last):
+  File "/home/kasemsit/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/kasemsit/.local/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/kasemsit/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/home/kasemsit/.local/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/home/kasemsit/.local/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/kasemsit/.local/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+
+import plotly.graph_objects as go
+import numpy as np
+
+# Create figure
+fig = go.Figure()
+
+def expon_distribution(lambd, x):
+  return lambd*np.exp(-lambd* x)
+
+# Add traces, one for each slider step
+lambda_range = np.arange(0, 5+0.1, 0.1)
+for step in lambda_range:
+    fig.add_trace(
+        go.Scatter(
+            visible=False,
+            line=dict(color="#00CED1", width=1),
+            mode='lines',
+            name=f"λ = {step}",
+            x=np.arange(0, 10+0.01, 0.01),
+            y=expon_distribution(step, np.arange(0, 10+0.01, 0.01))))
+
+# Make 10th trace visible
+fig.data[10].visible = True
+
+# Create and add slider
+steps = []
+for i in range(len(fig.data)):
+    step = dict(
+        method="update",
+        args=[{"visible": [False] * len(fig.data)}],
+        label=f'{lambda_range[i]:.1f}'
+    )
+    step["args"][0]["visible"][i] = True  # Toggle i'th trace to "visible"
+    steps.append(step)
+
+sliders = [dict(
+    active=10,
+    currentvalue={"prefix": 'Lambda = '},
+    #pad={"t": 4},
+    steps=steps
+)]
+
+fig.update_layout(
+    sliders=sliders,
+    yaxis_range=[0,2],
+    xaxis_title=r'$x$',
+    yaxis_title=r'$f_X(x;\lambda) = \lambda e^{-\lambda x}$',
+    margin=dict(l=20, r=20, t=20, b=20),    
+)
+fig.show()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mplotly[39;00m[38;5;21;01m.[39;00m[38;5;21;01mgraph_objects[39;00m [38;5;28;01mas[39;00m [38;5;21;01mgo[39;00m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      4[0m [38;5;66;03m# Create figure[39;00m
+
+[0;31mModuleNotFoundError[0m: No module named 'plotly'
+
