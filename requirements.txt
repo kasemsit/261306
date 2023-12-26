@@ -1,0 +1,10 @@
+jupyter-book
+matplotlib
+numpy
+sympy
+pandas
+openpyxl
+plotly
+sphinx-proof
+sphinx-exercise
+ghp-import

@@ -4,12 +4,13 @@
 format: jb-book
 root: index
 parts:
-- caption: ตัวแปรสุ่ม
+- caption: รูปแบบการแจกแจง
   maxdepth: 2
   options:
   numbered: true
   chapters:  
-  - file: rv/expectation       
+  - file: rv/exponential_distribution.md
+  - file: rv/triangular_distribution.ipynb      
 
 
 
